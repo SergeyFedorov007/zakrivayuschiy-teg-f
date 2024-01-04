@@ -13,8 +13,400 @@
 Кроме этого, не меняйте HTML переключателя тем. Его разметка также гарантирует работу своего скрипта.
 
 */
-
 .page {
   min-inline-size: 320px;
   min-block-size: 100dvb;
+  font-family: var(--primary-font), sans-serif;
+  font-size: 18px;
+  background-color: var(--background-color);
+  background-image: repeating-linear-gradient(
+      90deg,
+      transparent 0 2px,
+      var(--main-gradient) 2px 4px
+    ),
+    repeating-linear-gradient(
+      180deg,
+      transparent 0 2px,
+      var(--main-gradient) 2px 4px
+    ),
+    linear-gradient(to bottom, var(--gradient-start) 0%, var(--gradient-end));
+  font-variation-settings: "wght" var(--regular-font-weight);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  max-width: var(--card-width, 696px);
+  margin: 102px auto 104px;
+  align-items: center;
+  justify-content: center;
+  outline: 2px solid var(--main-theme-color, #000);
+  background: var(--background-color, #fff);
+  font-family: var(--secondary-font), fantasy;
+  padding-top: clamp(7.5rem, 7.148rem + 1.502vw, 8.5rem);
+  padding-bottom: 20px;
+}
+
+.header__logo {
+  font-size: clamp(3.0625rem, 2.7104rem + 1.5023vw, 4.0625rem);
+  font-weight: var(--regular-font-weight, 400);
+  color: var(--text-color, #000);
+  text-decoration: none;
+}
+
+.header__full-name {
+  padding-top: 19px;
+  color: var(--text-color, #000);
+  font-size: clamp(0.875rem, 0.6769rem + 0.8451vw, 1.4375rem);
+  font-style: normal;
+  font-weight: var(--regular-font-weight);
+  line-height: normal;
+  text-transform: uppercase;
+}
+
+.header__theme-menu {
+  margin-top: 22px;
+  margin-left: 18px;
+}
+
+.theme-menu__list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.theme-menu__button {
+  position: relative;
+  text-transform: uppercase;
+  background: transparent;
+  font-size: 14px;
+  font-style: normal;
+  border: none;
+  font-weight: var(--regular-font-weight, 400);
+  line-height: normal;
+  color: var(--text-color, #000);
+}
+
+.theme-menu__button:disabled:before {
+  position: absolute;
+  content: "▶";
+  left: -20px;
+  animation: menu_animation 0.5s ease-in-out alternate infinite;
+}
+
+.theme-menu__button:disabled {
+  pointer-events: none;
+}
+
+.theme-menu__item:hover .theme-menu__button {
+  transition: opacity 0.3s;
+  transition-timing-function: ease;
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.theme-menu__button::after {
+  display: block;
+  width: 0%;
+  height: 2px;
+  margin-top: 2px;
+  content: "";
+  background-color: var(--text-color);
+  transition: none;
+}
+
+.theme-menu__button:focus:after {
+  width: 100%;
+  transition: width 300ms;
+}
+
+.theme-menu__button:focus {
+  outline: none;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 54px;
+}
+
+.main__card {
+  outline: 2px solid var(--main-theme-color, #000);
+  background: var(--background-color, #fff);
+  max-width: var(--card-width, 700px);
+}
+
+.card__title {
+  padding: 5px 12px 5px 12px;
+  color: var(--main-theme-color, #000);
+  font-family: inherit;
+  font-size: inherit;
+  font-style: normal;
+  font-variation-settings: "wght" var(--bold-font-weight);
+  line-height: normal;
+}
+
+.card__image-group {
+  position: relative;
+  border-top: 2px solid var(--main-theme-color, #000);
+  border-bottom: 2px solid var(--main-theme-color, #000);
+}
+
+.card__image {
+  display: block;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.card__image-watermark {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  color: var(--main-theme-color, #000);
+  font-family: var(--secondary-font), fantasy;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: var(--regular-font-weight);
+  line-height: normal;
+  text-shadow: -1px 0 var(--outline-color), 0 1px var(--outline-color),
+    1px 0 var(--outline-color), 0 -1px var(--outline-color);
+  mix-blend-mode: hard-light;
+}
+
+.card__text {
+  border-top: 2px solid var(--main-theme-color, #000);
+  padding: 25px 50px 25px 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 27px;
+}
+
+.card__text-item {
+  color: var(--main-theme-color, #000);
+  font-family: inherit;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: var(--regular-font-weight);
+  line-height: 117%;
+}
+
+.card__like-group {
+  display: flex;
+  gap: 4px;
+  justify-content: end;
+  align-items: center;
+  margin-right: 25px;
+  margin-bottom: 25px;
+}
+
+.card__icon-button {
+  border: none;
+  background: none;
+  margin-right: 4px;
+  align-self: flex-end;
+}
+
+.like-icon {
+  transform: scale(150%);
+}
+
+.like-icon:hover {
+  cursor: pointer;
+}
+
+.like-icon .heart-fireworks {
+  opacity: 0;
+}
+
+.card__like-button {
+  background: transparent;
+  border: none;
+  outline: 2px solid var(--main-theme-color, #000);
+  padding: 9px 17px;
+  color: var(--main-theme-color, #000);
+  font-family: var(--secondary-font), fantasy;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: var(--regular-font-weight);
+  line-height: 90%;
+  min-width: 128px;
+  min-height: 36px;
+}
+
+.save {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 105px;
+}
+
+.save__button {
+  outline: 2px solid var(--main-theme-color, #000);
+  background-color: var(--background-color, #fff);
+  min-width: 335px;
+  min-height: 51px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+}
+
+.save__button-icon {
+  width: 21px;
+  height: 21px;
+  color: var(--main-theme-color);
+}
+
+.save__button-text {
+  font-size: 14px;
+  color: var(--main-theme-color, #000);
+  font-family: var(--secondary-font), fantasy;
+  font-style: normal;
+  font-weight: var(--regular-font-weight);
+  line-height: 90%;
+}
+
+.dialog {
+  max-width: 357px;
+  border: 2px solid var(--main-theme-color, #000);
+  background-color: var(--background-color, #fff);
+  color: var(--main-theme-color, #000);
+  font-family: var(--secondary-font), fantasy;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: var(--regular-font-weight);
+  line-height: 150%;
+  text-transform: uppercase;
+  padding: 31.5px 32.5px 30.5px 31.5px;
+}
+
+.dialog__text-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.dialog__icon {
+  width: 39px;
+  height: 39px;
+  flex-shrink: 0;
+}
+
+.dialog__text {
+  max-width: 234px;
+}
+
+.dialog__button {
+  min-width: 293px;
+  min-height: 38px;
+  margin-top: 30px;
+  border: none;
+  outline: 2px solid var(--main-theme-color, #000);
+  background: var(--background-color, #fff);
+}
+
+.dialog__button-text {
+  font-family: inherit;
+  font-size: 16px;
+}
+
+dialog::backdrop {
+  opacity: 0.75;
+  background: var(--main-theme-color, #000);
+}
+
+.image-filter-gray {
+  filter: grayscale(0.8);
+}
+
+.image-filter-saturate {
+  filter: saturate(400%);
+}
+
+.image-filter-hue-rotate {
+  filter: hue-rotate(30deg);
+}
+
+.image-filter-invert {
+  filter: invert(0.7);
+}
+
+.image-filter-sepia {
+  filter: sepia(1);
+}
+
+.image-filter-blur {
+  filter: blur(15px);
+}
+
+.image-filter-saturate-contrast-rotate {
+  filter: saturate(150%) contrast(50%) hue-rotate(90deg);
+}
+
+.button {
+  cursor: pointer;
+  position: relative;
+}
+
+.button::after {
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  display: block;
+  position: absolute;
+  content: "";
+  mix-blend-mode: difference;
+  background-color: var(--hover-background-color);
+  transition: width 0.5s ease-in-out;
+}
+
+.button:hover::after {
+  width: 100%;
+  transition: width 0.5s;
+  mix-blend-mode: difference;
+}
+
+.button:focus {
+  border: none;
+}
+
+.button:focus-visible {
+  box-shadow: 2px 2px 0px 2px var(--main-theme-color);
+  transition: box-shadow 0.1s;
+}
+
+@supports (
+  (text-stroke: 1px var(--outline-color)) or
+    (-webkit-text-stroke: 1px var(--outline-color))
+) {
+  .card__image-watermark {
+    -webkit-text-stroke: 1px var(--outline-color);
+    text-stroke: 1px var(--outline-color);
+    text-shadow: none;
+  }
+}
+
+@media (width <=376px) {
+  :root {
+    --card-width: 99%;
+  }
+
+  .save__button {
+    flex-direction: column;
+    flex-wrap: wrap;
+    min-width: 306px;
+    min-height: 80px;
+  }
+
+  .save__button-icon {
+    width: 28px;
+    height: 28px;
+  }
 }

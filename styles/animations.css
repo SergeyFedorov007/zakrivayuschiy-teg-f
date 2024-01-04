@@ -12,3 +12,89 @@
 
 Кроме этого, не меняйте HTML переключателя тем. Его разметка также гарантирует работу своего скрипта.
 */
+@keyframes menu_animation {
+  from {
+    transform: translate(0);
+  }
+
+  to {
+    transform: translate(4px);
+  }
+}
+
+@keyframes heartbeat {
+  from {
+    scale: 1;
+  }
+
+  to {
+    scale: 1.5;
+  }
+}
+
+@keyframes firework {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 100%;
+  }
+}
+
+.like-icon .heart-center {
+  fill: var(--background-color);
+  transition: fill 0.3s linear 0.03s;
+}
+
+.like-icon:hover .heart-center {
+  fill: var(--main-theme-color);
+  transition: fill 0.3s linear;
+}
+
+.like-icon .heart-body {
+  fill: var(--background-color);
+  transition: fill 0.3s linear;
+}
+
+.like-icon:hover .heart-body {
+  fill: var(--main-theme-color);
+  transition: fill 0.3s linear 0.06s;
+}
+
+.like-icon:active .heart-center {
+  fill: var(--heart-fill-color);
+  transition: fill 0.3s linear;
+}
+
+.like-icon:active .heart-body {
+  fill: var(--heart-fill-color);
+  transition: fill 0.3s linear 0.05s;
+}
+
+.like-icon.is-liked .heart-center {
+  fill: var(--heart-fill-color);
+  transition: fill 0.3s linear;
+}
+
+.like-icon.is-liked .heart-body {
+  fill: var(--heart-fill-color);
+  transition: fill 0.3s linear 0.05s;
+}
+
+.like-icon.is-liked .heart-contour {
+  fill: var(--heart-fill-color);
+  transition: fill 0.3s linear 0.06s;
+}
+
+.like-icon .heart {
+  transform-origin: center;
+}
+
+.like-icon.is-liked .heart {
+  animation: heartbeat 0.3s ease-in 0.1s 1 alternate;
+}
+
+.like-icon.is-liked .heart-fireworks {
+  animation: firework 0.3s ease-in 0.3s 1 alternate;
+}
