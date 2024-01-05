@@ -18,6 +18,7 @@
   min-block-size: 100dvb;
   font-family: var(--primary-font), sans-serif;
   font-size: 18px;
+  background-attachment:fixed;
   background-color: var(--background-color);
   background-image: repeating-linear-gradient(
       90deg,
